@@ -17,7 +17,7 @@ import org.apache.activemq.ActiveMQMessageProducer;
 public class Producer {
     private static String url = ActiveMQConnection.DEFAULT_BROKER_URL;
 //  TODO hier de naam van de destination invullen
-    private static String subject = "ARRIVALOGGER";
+    private static String subject = "Hallo";
     
     private Session session;
     private Connection connection;
