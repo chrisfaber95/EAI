@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/eai_bussimulator.iml" filepath="$PROJECT_DIR$/eai_bussimulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../../Opgaven/EAI/eai_bussimulatorStudenten/eai_bussimulatorStudenten.iml" filepath="$PROJECT_DIR$/../../../Opgaven/EAI/eai_bussimulatorStudenten/eai_bussimulatorStudenten.iml" />
+      <module fileurl="file://$PROJECT_DIR$/eai_qbuzz_website/eai_qbuzz_website.iml" filepath="$PROJECT_DIR$/eai_qbuzz_website/eai_qbuzz_website.iml" />
     </modules>
   </component>
 </project>

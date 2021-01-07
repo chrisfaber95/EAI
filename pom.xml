@@ -4,8 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>hanze.nl.eai.bussimlator.nl</groupId>
 	<artifactId>eai_bussimulator</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>EAI_BusSimulator</name>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>eai_qbuzz_website</module>
+    </modules>
+    <name>EAI_BusSimulator</name>
 	<description>Project opdracht SE module EAI</description>
 	<dependencies>
 		<!-- https://mvnrepository.com/artifact/org.apache.activemq/activemq-core -->
