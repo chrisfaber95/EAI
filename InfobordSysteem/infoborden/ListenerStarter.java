@@ -35,12 +35,16 @@ public  class ListenerStarter implements Runnable, ExceptionListener {
 //			TODO maak de session aan
 			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
 //			TODO maak de destination aan
-			Destination destination = session.createTopic(selector);
+			Destination destination = session.createQueue(selector);
 //			TODO maak de consumer aan
 			MessageConsumer consumer = session.createConsumer(destination);
             System.out.println("Produce, wait, consume"+ selector);
+           // System.out.println(consumer);
 //			TODO maak de Listener aan
-			consumer.setMessageListener(session.getMessageListener());
+			QueueListener listener = new QueueListener(consumer.getMessageSelector(), infobord, berichten);
+			listener.onMessage(consumer.receive());
+			//System.out.println(consumer.receive().getJMSMessageID());
+			//consumer.setMessageListener(session.getMessageListener());
         } catch (Exception e) {
             System.out.println("Caught: " + e);
             e.printStackTrace();

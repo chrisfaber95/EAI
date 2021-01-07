@@ -56,7 +56,7 @@ public class Infobord extends Application{
 	@Override
 	public void start(Stage primaryStage) {
 //		TODO maak de selector aan
-		String selector = halte;
+		String selector = halte + richting;
 		thread(new ListenerStarter(selector, this, berichten),false);
 		GridPane pane = new GridPane();
 		pane.setAlignment(Pos.CENTER_LEFT);
