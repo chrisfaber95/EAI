@@ -4,6 +4,7 @@ import javax.jms.*;
 
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.fusesource.mqtt.cli.Listener;
 
 public  class ListenerStarter implements Runnable, ExceptionListener {
 	private String selector="";
@@ -29,20 +30,25 @@ public  class ListenerStarter implements Runnable, ExceptionListener {
 			connection.start();
 			connection.setExceptionListener(this);
 //			TODO maak de session aan
-			//Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-			TopicSession topicSession = connection.createTopicSession(false, TopicSession.AUTO_ACKNOWLEDGE);
+			Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+			//TopicSession topicSession = connection.createTopicSession(false, TopicSession.AUTO_ACKNOWLEDGE);
 //			TODO maak de destination aan
 			//Destination destination = session.createTopic(selector);
-			Topic destination = topicSession.createTopic(selector);
+			Topic destination = session.createTopic("Infobord");
 //			TODO maak de consumer aan
-			MessageConsumer consumer = topicSession.createConsumer(destination);
-            System.out.println("Produce, wait, consume"+ selector);
+			//MessageConsumer consumer = session.createConsumer(destination);
+			MessageConsumer consumer = session.createConsumer(destination, selector);
+            System.out.println("Produce, wait, consume "+ selector);
            // System.out.println(consumer);
 //			TODO maak de Listener aan
-			//QueueListener listener = new QueueListener(consumer.getMessageSelector(), infobord, berichten);
-			TopicRequestor listener = new TopicRequestor(topicSession,destination);
-			listener.request(consumer.receive());
-			//listener.onMessage(consumer.receive());
+			QueueListener listener = new QueueListener(selector, infobord, berichten);
+			//TopicRequestor listener = new TopicRequestor(topicSession,destination);
+			//MessageListener myListener = new MessageListener();
+			//TopicListener
+			//consumer.setMessageListener(listener);
+
+			//listener.request(consumer.receive());
+			listener.onMessage(consumer.receive());
 			//System.out.println(consumer.receive().getJMSMessageID());
 			//consumer.setMessageListener(session.getMessageListener());
         } catch (Exception e) {
